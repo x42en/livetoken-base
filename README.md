@@ -9,33 +9,35 @@ First register yourself on livetoken.io (it's free !) and retrieve your API Key 
 
 
 ## Install
-    ```sh
-        meteor add benmz:livetoken-base
-    ```
+
+Install with meteor
+  ```sh
+    meteor add benmz:livetoken-base
+  ```
 
 ## Configuration and usage
 
-Configure on server side (replace the xxxxx with your client API Key)
-    ```coffeescript
-        if Meteor.isServer
-            Meteor.startup () ->
-              configLiveToken
-                   auth: 'EMAIL-ONLY'
-                   client_id: 'xxxxxxxxxxxxxxxxxxx'
-    ```
+Configure on server side (replace the xxxxx with your client API Key):
+  ```coffeescript
+    if Meteor.isServer
+      Meteor.startup () ->
+        configLiveToken
+         auth: 'EMAIL-ONLY'
+         client_id: 'xxxxxxxxxxxxxxxxxxx'
+  ```
 
-Use it in your code (exemple below use)
-    ```coffeescript
-        'submit #login': (evt) ->
-            evt.preventDefault()
-            options = { email: $('input[name=email]').val() }
+Use it in your code (exemple below use):
+  ```coffeescript
+    'submit #login': (evt) ->
+      evt.preventDefault()
+      options = { email: $('input[name=email]').val() }
             
-            Meteor.requestToken options, (err, res) ->
-                if err
-                    console.log err.reason
-                else
-                    console.log res.Email
-    ```
+      Meteor.requestToken options, (err, res) ->
+        if err
+          console.log err.reason
+        else
+          console.log res.Email
+  ```
 
 ## Methods available
 
