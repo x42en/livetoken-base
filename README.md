@@ -22,6 +22,7 @@ Configure on server side (replace the xxxxx with your client API Key)
               configLiveToken
                    auth: 'EMAIL-ONLY'
                    client_id: 'xxxxxxxxxxxxxxxxxxx'
+    ```
 
 Use it in your code (exemple below use)
     ```coffeescript
@@ -34,6 +35,7 @@ Use it in your code (exemple below use)
                     console.log err.reason
                 else
                     console.log res.Email
+    ```
 
 ## Methods available
 
