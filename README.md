@@ -7,6 +7,7 @@ This is the base package, you could probably check: livetoken-ui wich will give 
 
 First register yourself on [livetoken.io](http://livetoken.io) (it's free !) and retrieve your API Key (client_id) from your administration space.
 
+___
 
 ## Install
 
@@ -39,6 +40,8 @@ Use it in your code (exemple below use):
           console.log res.Email
   ```
 
+___
+
 ## Methods available
 
 Different methods can be used to interrogate livetoken.io
@@ -59,17 +62,23 @@ Required: email, phone (depending of your authentication configuration)
 >Will basically check the token entered by user with the received one.
 Required: email, phone (depending of your authentication configuration)
 
+___
+
 ## Configuration options
 >There's different options available in order to configure your authentication method.
 >These options must be set on server-side to Accounts.livetoken object
 
-auth: define the authentication method
-    options are: EMAIL-ONLY / PHONE-ONLY / EMAIL-OR-PHONE / EMAIL-AND-PHONE
+**auth**
+Define the authentication method
+options are: EMAIL-ONLY / PHONE-ONLY / EMAIL-OR-PHONE / EMAIL-AND-PHONE
 
-client_id: define your client API key fo livetoken.io
+**client_id**
+Define your client API key fo livetoken.io
 
-retry: define the max number of attempts your client can try token code before it gets invalidated (default: 3)
+**retry**
+Define the max number of attempts your client can try token code before it gets invalidated (default: 3)
 
-timeout: define the max number of seconds before a token is invalidated (default: 300)
+**timeout**
+Define the max number of seconds before a token is invalidated (default: 300)
 
 
