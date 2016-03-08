@@ -5,12 +5,12 @@ This is the base package, you could probably check: livetoken-ui wich will give 
 
 ## Registration
 
-First register yourself on livetoken.io (it's free !) and retrieve your API Key (client_id) from your administration space.
+First register yourself on [livetoken.io](http://livetoken.io) (it's free !) and retrieve your API Key (client_id) from your administration space.
 
 
 ## Install
 
-Install with meteor
+Install with meteor:
   ```sh
     meteor add benmz:livetoken-base
   ```
@@ -47,21 +47,21 @@ Different methods can be used to interrogate livetoken.io
 No parameters, will send back the authentication methods choosen
 
 ### Meteor.registerUser()
-Allow you to create a new user with phone field.
+>Allow you to create a new user with phone field.
 Required: email
 Optional: phone, name, surname, company
 
 ### Meteor.requestToken()
-Allow to request a token from livetoken.io
+>Allow to request a token from livetoken.io
 Required: email, phone (depending of your authentication configuration)
 
 ### Meteor.loginWithToken
-Will basically check the token entered by user with the received one.
+>Will basically check the token entered by user with the received one.
 Required: email, phone (depending of your authentication configuration)
 
 ## Configuration options
-There's different options available in order to configure your authentication method.
-These options must be set on server-side to Accounts.livetoken object
+>There's different options available in order to configure your authentication method.
+>These options must be set on server-side to Accounts.livetoken object
 
 auth: define the authentication method
     options are: EMAIL-ONLY / PHONE-ONLY / EMAIL-OR-PHONE / EMAIL-AND-PHONE
