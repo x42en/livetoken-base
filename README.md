@@ -1,5 +1,7 @@
 # LiveToken-Base
 
+[![Build Status](https://secure.travis-ci.org/x62en/livetoken-base.png?branch=master)](https://travis-ci.org/x62en/livetoken-base)
+
 Easily implement token authentication (unique and temporary code) in your meteor project.
 This is the base package, you could probably check: livetoken-ui wich will give you access to a minimal user interface.
 
@@ -51,15 +53,18 @@ No parameters, will send back the authentication methods choosen
 
 ### Meteor.registerUser()
 >Allow you to create a new user with phone field.
+
 Required: email
 Optional: phone, name, surname, company
 
 ### Meteor.requestToken()
 >Allow to request a token from livetoken.io
+
 Required: email, phone (depending of your authentication configuration)
 
 ### Meteor.loginWithToken
 >Will basically check the token entered by user with the received one.
+
 Required: email, phone (depending of your authentication configuration)
 
 ___
@@ -69,8 +74,8 @@ ___
 >These options must be set on server-side to Accounts.livetoken object
 
 **auth**
-Define the authentication method
-options are: EMAIL-ONLY / PHONE-ONLY / EMAIL-OR-PHONE / EMAIL-AND-PHONE
+Define the authentication method.
+Valid options are: EMAIL-ONLY / PHONE-ONLY / EMAIL-OR-PHONE / EMAIL-AND-PHONE
 
 **client_id**
 Define your client API key fo livetoken.io
