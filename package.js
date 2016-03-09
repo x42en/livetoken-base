@@ -17,8 +17,8 @@ Package.onUse(function(api) {
   api.use('accounts-base');
   
   // The files of this package
-  api.addFiles('livetoken.coffee', ['client', 'server']);
-  
+  api.addFiles('livetoken-base.coffee', ['client', 'server']);
+
 });
 
 Package.onTest(function(api) {
