@@ -11,19 +11,17 @@ Package.onUse(function(api) {
   api.versionsFrom('1.2.0.1');
 
   // Core packages and 3rd party packages
-  api.use('ddp', ['client', 'server']);
-  api.use('mongo', ['client', 'server']);
-  api.use('coffeescript',['server']);
   api.use('accounts-base');
-  
+  api.use('coffeescript');
+
   // The files of this package
-  api.addFiles('livetoken-base.coffee', ['client', 'server']);
+  api.addFiles('livetoken-base.coffee');
 
 });
 
 Package.onTest(function(api) {
-  api.use('coffeescript');
   api.use('tinytest');
   api.use('benmz:livetoken-base');
+  api.use('coffeescript');
   api.addFiles('livetoken-base-tests.js');
 });
