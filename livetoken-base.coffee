@@ -32,6 +32,12 @@
 
 	return result
 
+
+
+##############################################
+############ SERVER SIDE METHODS #############
+##############################################
+
 if Meteor.isServer
 	Accounts.livetoken = {
 		auth: "EMAIL-ONLY"
@@ -93,12 +99,25 @@ if Meteor.isServer
 
 		userDoc.emails = [{address: options.email.toLowerCase(), verified: false}]
 		
-		# Check if this phone is already existing somewhere
+		# Check if this user is already existing somewhere depending on auth method
+		switch Accounts.livetoken.auth
+			when 'EMAIL-ONLY'
+				user = Meteor.users.find({'email': userDoc.email}).fetch()
+			when 'PHONE-ONLY'
+				user = Meteor.users.find({'phone': userDoc.phone}).fetch()
+			when 'EMAIL-OR-PHONE'
+				user = Meteor.users.find({$or: [{'phone': userDoc.phone}, {'email': userDoc.email}]}).fetch()
+			when 'EMAIL-AND-PHONE'
+				user = Meteor.users.find({'email': userDoc.email, 'phone': userDoc.phone}).fetch()
+			else
+				throw new Meteor.Error 'unconfigured-authentication', 'Please configure your authentication method first.'
+		unless user.length is 0
+			throw new Meteor.Error 'existing-user', 'Sorry this user already exists.'
 
 		# Insert user in standard Accounts object
 		userId = Accounts.insertUserDoc options, userDoc
 		
-		Meteor.users.update userId, { $set: {email: options.email.toLowerCase(), phone: options.phone services: userDoc.services, emails: userDoc.emails, try: 0} }
+		Meteor.users.update userId, { $set: {'email': userDoc.email, 'phone': options.phone, 'services': userDoc.services, 'emails': userDoc.emails, 'try': 0} }
 
 		return userId
 
@@ -378,6 +397,14 @@ if Meteor.isServer
 		
 		return true
 
+
+
+
+
+##############################################
+############ CLIENT SIDE METHODS #############
+##############################################
+
 if Meteor.isClient
 	Meteor.getAuthMethods = () ->
 		Meteor.call 'livetoken.authMethods', (err, res) ->
@@ -455,19 +482,17 @@ if Meteor.isClient
 
 			if auth.name is 'ident'
 				if Session.get 'livetoken.emailToken'
-					ident = Session.get 'livetoken.emailToken'
-					creds[ident] = { type: 'email', token: options.ident }
-					user.email = ident
+					auth.name = 'email'
 				else if Session.get 'livetoken.phoneToken'
-					ident = Session.get 'livetoken.phoneToken'
-					creds[ident] = { type: 'phone', token: options.ident }
+					auth.name = 'phone'
 				else
 					throw new Meteor.Error 'empty-authentication', 'Your authentication type is not set.'
-			else
-				ident = Session.get "livetoken.#{auth.name}Token"
-				creds[ident] = { type: auth.name, token: options[auth.name] }
-				if auth.name is 'email'
-					user.email = ident
+				options[auth.name] = options.ident
+			
+			ident = Session.get "livetoken.#{auth.name}Token"
+			creds[ident] = { type: auth.name, token: options[auth.name] }
+			if auth.name is 'email'
+				user.email = ident
 		
 		if Object.keys(creds).length > 0
 			credentials = [creds]
@@ -497,4 +522,3 @@ if Meteor.isClient
 				callback err
 			else
 				callback res
-
