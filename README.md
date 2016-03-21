@@ -1,5 +1,7 @@
 # LiveToken-Base
 
+[![Meteor Icon](http://icon.meteor.com/package/benmz:livetoken-base)][atmosphere]
+
 [![Build Status](https://secure.travis-ci.org/x62en/livetoken-base.png?branch=master)](https://travis-ci.org/x62en/livetoken-base)
 
 Easily implement token authentication (unique and temporary code) in your meteor project.
