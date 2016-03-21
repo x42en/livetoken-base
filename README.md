@@ -52,38 +52,34 @@ Different methods can be used to interrogate livetoken.io
 No parameters, will send back the authentication methods choosen
 
 ### Meteor.registerUser()
->Allow you to create a new user with phone field.
+> Allow you to create a new user with phone field.
 
-Required: email
-Optional: phone, name, surname, company
+**Required: email**
+*Optional: phone, name, surname, company*
 
 ### Meteor.requestToken()
->Allow to request a token from livetoken.io
+> Allow to request a token from livetoken.io
 
-Required: email, phone (depending of your authentication configuration)
+**Required: email, phone** *(depending of your authentication configuration)*
 
 ### Meteor.loginWithToken
->Will basically check the token entered by user with the received one.
+> Will basically check the token entered by user with the received one.
 
-Required: email, phone (depending of your authentication configuration)
+**Required: email, phone** *(depending of your authentication configuration)*
 
 ___
 
 ## Configuration options
->There's different options available in order to configure your authentication method.
->These options must be set on server-side to Accounts.livetoken object
+> There's different options available in order to configure your authentication method.
+> These options must be set on server-side to Accounts.livetoken object
 
-**auth**
-Define the authentication method.
-Valid options are: EMAIL-ONLY / PHONE-ONLY / EMAIL-OR-PHONE / EMAIL-AND-PHONE
+**auth**: Define the authentication method.
+> Valid options are: EMAIL-ONLY / PHONE-ONLY / EMAIL-OR-PHONE / EMAIL-AND-PHONE
 
-**client_id**
-Define your client API key fo livetoken.io
+**client_id**: Define your client API key from livetoken.io
 
-**retry**
-Define the max number of attempts your client can try token code before it gets invalidated (default: 3)
+**retry**: Define the max number of attempts your client can try token code before it gets invalidated (default: 3)
 
-**timeout**
-Define the max number of seconds before a token is invalidated (default: 300)
+**timeout**: Define the max number of seconds before a token is invalidated (default: 300)
 
 
