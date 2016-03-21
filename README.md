@@ -1,6 +1,6 @@
 # LiveToken-Base
 
-![Meteor Icon](http://icon.meteor.com/package/benmz:livetoken-base)]
+![Meteor Icon](http://icon.meteor.com/package/benmz:livetoken-base)
 
 [![Build Status](https://secure.travis-ci.org/x62en/livetoken-base.png?branch=master)](https://travis-ci.org/x62en/livetoken-base)
 
